@@ -2,7 +2,9 @@ package com.kbe.service.user.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
 
+@Component
 @Document("users")
 public class User {
 
@@ -11,6 +13,16 @@ public class User {
     private String name;
     private String email;
     private String password;
+
+    public User() {
+    }
+
+    public User(String id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public void setId(String id) {
         this.id = id;

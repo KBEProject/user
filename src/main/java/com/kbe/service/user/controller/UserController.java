@@ -11,16 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = {
-        "*"
-},
-        allowedHeaders = "*",
-        allowCredentials = "false",
-        methods = {
-                RequestMethod.GET,
-                RequestMethod.POST,
-                RequestMethod.DELETE
-        })
 public class UserController {
 
     @Autowired
@@ -45,14 +35,12 @@ public class UserController {
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
         User u = userRepository.findUserByEmail(email);
         System.out.println(u);
-        if (u.equals(null)) {
+        if (u == null) {
             return new ResponseEntity<>("No user found", HttpStatus.BAD_REQUEST);
         }
         if (u.getPassword().equals(password)) {
-            System.out.println("yes");
             return new ResponseEntity<>(u, HttpStatus.OK);
         } else {
-            System.out.println("no");
             return new ResponseEntity<>("wrong password", HttpStatus.BAD_REQUEST);
         }
     }
