@@ -3,8 +3,6 @@ package com.kbe.service.user.controller;
 import com.kbe.service.user.model.User;
 import com.kbe.service.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<?> loginUser(@RequestParam String email, @RequestParam String password) {
         User u = userRepository.findUserByEmail(email);
         System.out.println(u);
         if (u == null) {
