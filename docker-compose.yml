@@ -1,0 +1,25 @@
+services:
+  converterApp:
+    container_name: converter
+    image: converter
+    environment:
+      MONGO_INITDB_DATABASE: storage_db
+    volumes:
+      - mongodb:/data/mongodb
+    ports:
+      - 8083:8083
+    restart: unless-stopped
+
+  userApp:
+    container_name: user
+    image: user
+    environment:
+      MONGO_INITDB_DATABASE: storage_db
+    volumes:
+      - mongodb:/data/mongodb
+    ports:
+      - 8084:8084
+    restart: unless-stopped
+
+volumes:
+  mongodb:
